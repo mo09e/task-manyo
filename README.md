@@ -1,24 +1,29 @@
-# README
+## [株式会社万葉様新入社員教育課題](https://diver.diveintocode.jp/curriculums/1277)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### テーブルについて
 
-Things you may want to cover:
+**User**
 
-* Ruby version
+|データ型|カラム名|
+|:---|:---|
+|string|name|
+|string|email|
+|string|password_digest|
 
-* System dependencies
+**Task**
 
-* Configuration
+|データ型|カラム名|
+|:---|:---|
+|string|task_name|
+|text|content|
+|string|status|
+|date|deadline|
+|integer|priority|
+|begint|user_id|
 
-* Database creation
+**Label**
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+|データ型|カラム名|
+|:---|:---|
+|begint|user_id|
+|begint|task_id|
