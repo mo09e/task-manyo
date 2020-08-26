@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
@@ -43,6 +43,11 @@ class TasksController < ApplicationController
   def confirm
     @task = Task.new(task_params)
     render :new if @task.invalid?
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, notice:"タスクを削除しました！"
   end
 
   private
