@@ -1,7 +1,7 @@
 <h2>Task List</h2>
 <p><%= notice %></p>
-<button type="button" class="btn btn-default"><%= link_to 'New Task', new_task_path %></button>
-<table>
+<button type="button" class="btn btn-default"><%= link_to t('view.models.task.new'), new_task_path %></button>
+<table class="task_row">
   <thead>
     <tr>
       <th>Task name</th>
@@ -14,9 +14,9 @@
       <tr>
         <td><%= task.task_name %></td>
         <td><%= task.content %></td>
-        <td><%= link_to 'Show', task_path(task.id) %></td>
-        <td><%= link_to "Edit", edit_task_path(task.id), data: { confirm: '本当に編集していいですか？' } %></td>
-        <td><%= link_to 'Delete', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+        <td><%= link_to t('view.models.task.show'), task_path(task.id) %></td>
+        <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') } %></td>
+        <td><%= link_to t('view.models.task.delete'), task_path(task.id), method: :delete ,data: { confirm: t('delete_it?') } %>
       </tr>
     <% end %>
   </tbody>
