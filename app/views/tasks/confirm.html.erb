@@ -1,0 +1,11 @@
+<h3>確認画面</h3>
+<%= form_with(model: @task, local: true) do |form| %>
+  <%= form.hidden_field :task_name %>
+  <%= form.hidden_field :content %>
+  <p>Task name:</p>
+  <p><%= @task.task_name %></p>
+  <p>content:</p>
+  <p><%= @task.content %></p>
+  <%= form.submit "Post task" %>
+  <%= form.submit "Back", name: "back" %>
+<% end %>
