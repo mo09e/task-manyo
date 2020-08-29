@@ -7,6 +7,7 @@ ja:
         show: 詳細
         edit: 編集
         delete: 削除
+        sort_by_deadline: 終了期限でソートをかける
   delete_it?: 本当に削除しますか？
   edit_it_?: 本当に編集しますか？
   activerecord:

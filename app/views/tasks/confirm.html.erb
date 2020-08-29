@@ -2,10 +2,13 @@
 <%= form_with(model: @task, local: true) do |form| %>
   <%= form.hidden_field :task_name %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :deadline %>
   <p>Task name:</p>
   <p><%= @task.task_name %></p>
-  <p>content:</p>
+  <p>Details:</p>
   <p><%= @task.content %></p>
+  <p>Deadline:</p>
+  <p><%= @task.deadline %></p>
   <%= form.submit "Post task" %>
   <%= form.submit "Back", name: "back" %>
 <% end %>
