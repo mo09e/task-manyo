@@ -1,7 +1,7 @@
 <h2>Task List</h2>
 <p><%= notice %></p>
 <button type="button" class="btn btn-default"><%= link_to t('view.models.task.new'), new_task_path %></button>
-<%= link_to t('view.models.task.sort_by_deadline'), tasks_path(sort_expired: "true") %>
+<%= link_to t('view.models.task.sort_by_deadline'), tasks_path(sort_expired: "true")  %>
 <table class="task_row">
   <thead>
     <tr>
