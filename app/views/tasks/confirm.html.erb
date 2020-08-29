@@ -8,7 +8,7 @@
   <p>Details:</p>
   <p><%= @task.content %></p>
   <p>Deadline:</p>
-  <p><%= @task.deadline %></p>
+  <p><%= l @task.deadline %></p>
   <%= form.submit "Post task" %>
   <%= form.submit "Back", name: "back" %>
 <% end %>

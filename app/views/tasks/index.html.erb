@@ -16,7 +16,7 @@
       <tr>
         <td><%= task.task_name %></td>
         <td><%= task.content %></td>
-        <td><%= task.deadline %></td>
+        <td><%= l task.deadline %></td>
         <td><%= link_to t('view.models.task.show'), task_path(task.id) %></td>
         <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') } %></td>
         <td><%= link_to t('view.models.task.delete'), task_path(task.id), method: :delete ,data: { confirm: t('delete_it?') } %>
