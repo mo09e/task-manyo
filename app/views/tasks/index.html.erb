@@ -1,7 +1,8 @@
 <h2>Task List</h2>
 <p><%= notice %></p>
 <button type="button" class="btn btn-default"><%= link_to t('view.models.task.new'), new_task_path %></button>
-<%= link_to t('view.models.task.sort_by_deadline'), tasks_path(sort_expired: "true")  %>
+<%# <%= link_to tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %> %>
+<%= link_to t('view.models.task.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %>
 <table class="task_row">
   <thead>
     <tr>
@@ -16,7 +17,7 @@
       <tr>
         <td><%= task.task_name %></td>
         <td><%= task.content %></td>
-        <td><%= l task.deadline %></td>
+        <td class="task_row_deadline"><%= l task.deadline %></td>
         <td><%= link_to t('view.models.task.show'), task_path(task.id) %></td>
         <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') } %></td>
         <td><%= link_to t('view.models.task.delete'), task_path(task.id), method: :delete ,data: { confirm: t('delete_it?') } %>
