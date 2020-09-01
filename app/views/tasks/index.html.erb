@@ -1,7 +1,14 @@
 <h2>Task List</h2>
 <p><%= notice %></p>
+<%= form_with(url: tasks_path, method: :get, local: true) do |search_f| %>
+  <%= search_f.label :task_name, t('view.search.search_tile') %>
+  <%= search_f.text_field :task_name, placeholder: t('view.search.enter_title') %>
+  <%= search_f.submit t('view.search.do_a_search'), class: "btn btn-default" %>
+<% end %>
+<br>
+<br>
 <button type="button" class="btn btn-default"><%= link_to t('view.models.task.new'), new_task_path %></button>
-<%= link_to t('view.models.task.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %>
+<%= link_to t('view.search.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %>
 <table class="task_row">
   <thead>
     <tr>

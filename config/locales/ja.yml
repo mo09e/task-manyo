@@ -7,7 +7,11 @@ ja:
         show: 詳細
         edit: 編集
         delete: 削除
-        sort_by_deadline: 終了期限でソートをかける
+    search:
+      search_tile: タイトル検索
+      enter_title: タイトルを入力する
+      sort_by_deadline: 終了期限でソートをかける
+      do_a_search: 検索
   delete_it?: 本当に削除しますか？
   edit_it_?: 本当に編集しますか？
   activerecord:
