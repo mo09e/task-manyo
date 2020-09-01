@@ -14,6 +14,6 @@ FactoryBot.define do
   factory :third_task, class: Task do
     task_name { 'Sample_task3' }
     content { 'Eat lunch' }
-    deadline { '2020-08-31 15:00:00' }
+    deadline { '2021-08-31 15:00:00' }
   end
 end

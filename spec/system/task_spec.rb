@@ -1,6 +1,5 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  # let!(:task) { FactoryBot.create(:task, task_name: 'task', content: 'swim') }
   before do
     FactoryBot.create(:task)
     FactoryBot.create(:second_task)
@@ -13,12 +12,10 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in :task_task_name, with: 'task_name'
         fill_in :task_content, with: 'task'
-        save_and_open_page
-        select '2021', from: 'Deadline'
-        save_and_open_page
+        select '2021', from: :task_deadline_1i
         click_on "Post task"
         expect(page).to have_content 'task'
-        expect(page).to have_select('Deadline', selected: '2021')
+        expect(page).to have_content '2021'
       end
     end
   end
@@ -33,20 +30,20 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(page).to have_content 'task'
       end
     end
-    context '終了期日でソートした場合' do
-      it 'タスクが終了期日の降順に並んでいること' do
-        # click_on "終了期限でソートをかける"
-        # find("#sort_by_deadline").click
-        visit tasks_path(sort_expired: "false")
-        task_list = all('.task_row_deadline')
-        expect(task_list[0]).to have_content '2020/08/31'
-        expect(task_list[1]).to have_content '2020/08/30'
-      end
-    end
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'task'
+        expect(task_list[0]).to have_content 'Eat lunch'
+      end
+    end
+    context '終了期日でソートした場合' do
+      it 'タスクが終了期日の降順に並んでいること' do
+        visit tasks_path
+        click_link '終了期限でソートをかける'
+        task_list = all('.task_row_deadline')
+        expect(task_list[1]).to have_content '2020/08/29'
+        expect(task_list[2]).to have_content '2020/08/30'
+        expect(task_list[3]).to have_content '2021/08/31'
       end
     end
   end
