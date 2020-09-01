@@ -7,6 +7,7 @@
     <tr>
       <th>Task name</th>
       <th>Details</th>
+      <th>Status</th>
       <th>Deadline</th>
       <th colspan="2"></th>
     </tr>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= task.task_name %></td>
         <td><%= task.content %></td>
+        <td><%= task.status %></td>
         <td class="task_row_deadline" ><%= l task.deadline %></td>
         <td><%= link_to t('view.models.task.show'), task_path(task.id) %></td>
         <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') } %></td>
