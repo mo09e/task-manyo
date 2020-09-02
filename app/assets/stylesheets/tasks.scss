@@ -1,3 +1,42 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* All　================================  */
+body {
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "メイリオ", sans-serif;
+    font-size: 13px;
+}
+
+/* Task Main　================================  */
+
+#main_table {
+  width: 100%;
+}
+
+#main_table a {
+  color: #110E00;
+
+  &:visited {
+    color: #363226;
+  }
+
+  &:hover {
+    color: #fff;
+    background-color: #110E00;
+  }
+}
+
+table, th, td {
+  border-style: none !important;
+  padding-left: 5px;
+}
+
+.task_row_priority, .task_row_deadline,
+.task_row_status, .t_head,  {
+  text-align: center;
+}
+
+.task_content {
+  width: 30%;
+}

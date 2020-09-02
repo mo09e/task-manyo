@@ -1,47 +1,72 @@
-<h2>Task List</h2>
-<p><%= notice %></p>
-<%= form_with(url: tasks_path, method: :get, local: true) do |search_f| %>
-  <%= search_f.label :task_name, t('view.search.search_tile') %>
-  <%= search_f.text_field :task_name, placeholder: t('view.search.enter_title') %>
-  <%= search_f.label :status, t('view.search.sort_status') %>
-  <%= search_f.select :status,
-                              [[t('view.search.not_started')],
-                               [t('view.search.at_work')],
-                               [t('view.search.complete')]] , include_blank: true %>
-  <%= search_f.hidden_field :search, value:"true" %>
-  <%= search_f.submit t('view.search.do_a_search'), class: "btn btn-default" %>
-<% end %>
-<br>
-<br>
-<button type="button" class="btn btn-default"><%= link_to t('view.models.task.new'), new_task_path %></button>
-<%= link_to t('view.search.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %>
-<%= link_to t('view.search.sort_by_priority'),tasks_path(sort_priority: "true"), id: "sort_by_priority", class: "task_row_priority" %>
-<%= link_to t('view.search.unlock_the_sort'),tasks_path(sort: 'created_at DESC') %>
-<table class="task_row">
-  <thead>
-    <tr>
-      <th>Task name</th>
-      <th>Details</th>
-      <th>Status</th>
-      <th>Priority</th>
-      <th>Deadline</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.task_name %></td>
-        <td><%= task.content %></td>
-        <td><%= task.status %></td>
-        <td class="task_row_priority" ><%= task.priority %></td>
-        <td class="task_row_deadline" ><%= l task.deadline %></td>
-        <td><%= link_to t('view.models.task.show'), task_path(task.id) %></td>
-        <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') } %></td>
-        <td><%= link_to t('view.models.task.delete'), task_path(task.id), method: :delete ,data: { confirm: t('delete_it?') } %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= paginate @tasks %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-5">
+      <br>
+      <h2>
+        Task List
+        <%= link_to t('view.models.task.new'), new_task_path, class: "btn btn-primary" %>
+      </h2>
+      <br>
+      <p><%= notice %></p>
+      <br>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <center>
+      <%= form_with(url: tasks_path, method: :get, local: true) do |search_f| %>
+        <%= search_f.label :task_name, t('view.search.search_tile') %>
+        <%= search_f.text_field :task_name, placeholder: t('view.search.enter_title') %>
+        <%= search_f.label :status, t('view.search.sort_status') %>
+        <%= search_f.select :status,
+                                  [[t('view.search.not_started')],
+                                   [t('view.search.at_work')],
+                                   [t('view.search.complete')]] , include_blank: true %>
+        <%= search_f.hidden_field :search, value:"true" %>
+        <%= search_f.submit t('view.search.do_a_search'), class: "btn btn-primary" %>
+      <% end %>
+      <br>
+        <%= link_to t('view.search.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline", class: "btn btn-warning" %>
+        <%= link_to t('view.search.sort_by_priority'),tasks_path(sort_priority: "true"), id: "sort_by_priority", class: "task_row_priority", class: "btn btn-warning" %>
+        <%= link_to t('view.search.unlock_the_sort'),tasks_path(sort: 'created_at DESC'), class: "btn btn-danger" %>
+      </center>
+      <br>
+      <table class="task_row" id="main_table">
+        <thead>
+          <tr>
+            <th class="t_head">Task name</th>
+            <th class="t_head">Details</th>
+            <th class="t_head">Status</th>
+            <th class="t_head">Priority</th>
+            <th class="t_head">Deadline</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.task_name %></td>
+          <td class="task_content"><%= task.content %></td>
+          <td class="task_row_status"><%= task.status %></td>
+          <td class="task_row_priority" ><%= task.priority %></td>
+          <td class="task_row_deadline" ><%= l task.deadline %></td>
+          <td><%= link_to t('view.models.task.show'), task_path(task.id), class: "btn btn-dark-moon" %></td>
+          <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') }, class: "btn btn-dark-moon" %></td>
+          <td><%= link_to t('view.models.task.delete'), task_path(task.id), method: :delete ,data: { confirm: t('delete_it?') }, class: "btn btn-dark-moon" %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-9 col-md-3">
+    <br>
+      <%= paginate @tasks %>
+    </div>
+  </div>
+</div>
