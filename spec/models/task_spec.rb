@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   describe 'タスクモデル機能', type: :model do
+
     describe 'バリデーションのテスト' do
       context 'タスクのタイトルが空の場合' do
         it 'バリデーションにひっかる' do
@@ -22,5 +23,30 @@ RSpec.describe Task, type: :model do
         end
       end
     end
+
+    describe '検索機能' do
+      before do
+        FactoryBot.create(:task)
+        FactoryBot.create(:second_task)
+        FactoryBot.create(:third_task)
+      end
+        context 'scopeメソッドでタイトルのあいまい検索をした場合' do
+          it "検索キーワードを含むタスクが絞り込まれる" do
+            expect(Task.task_name_search('sample_name')).not_to include('in the morning')
+            expect(Task.task_name_search('sample_name').count).to eq 1
+          end
+        end
+        context 'scopeメソッドでステータス検索をした場合' do
+          it "ステータスに完全一致するタスクが絞り込まれる" do
+            expect(Task.status_search('完了').count).to eq 1
+          end
+        end
+        context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
+          it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+            expect(Task.task_name_search('at noon').status_search('未着手').count).to eq 1
+          end
+        end
+      end
+
   end
 end
