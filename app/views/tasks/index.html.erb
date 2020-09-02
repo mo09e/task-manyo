@@ -1,8 +1,14 @@
 <h2>Task List</h2>
 <p><%= notice %></p>
-<%= form_with(url: tasks_path(search: "true"), method: :get, local: true) do |search_f| %>
+<%= form_with(url: tasks_path, method: :get, local: true) do |search_f| %>
   <%= search_f.label :task_name, t('view.search.search_tile') %>
   <%= search_f.text_field :task_name, placeholder: t('view.search.enter_title') %>
+  <%= search_f.label :status, t('view.search.sort_status') %>
+  <%= search_f.select :status,
+                              [[t('view.search.not_started')],
+                               [t('view.search.at_work')],
+                               [t('view.search.complete')]] , include_blank: true %>
+  <%= search_f.hidden_field :search, value:"true" %>
   <%= search_f.submit t('view.search.do_a_search'), class: "btn btn-default" %>
 <% end %>
 <br>
@@ -15,7 +21,6 @@
       <th>Task name</th>
       <th>Details</th>
       <th>Status</th>
-      <th>Created</th>
       <th>Deadline</th>
       <th colspan="2"></th>
     </tr>
@@ -26,7 +31,6 @@
         <td><%= task.task_name %></td>
         <td><%= task.content %></td>
         <td><%= task.status %></td>
-        <td><%= task.created_at %></td>
         <td class="task_row_deadline" ><%= l task.deadline %></td>
         <td><%= link_to t('view.models.task.show'), task_path(task.id) %></td>
         <td><%= link_to t('view.models.task.edit'), edit_task_path(task.id), data: { confirm: t('edit_it_?') } %></td>
