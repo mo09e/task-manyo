@@ -15,10 +15,12 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in :task_content, with: 'task'
         select '2021', from: :task_deadline_1i
         select '着手中', from: 'task_status'
+        select '高', from: 'task_priority'
         click_on "Post task"
         expect(page).to have_content 'task'
         expect(page).to have_content '2021'
         expect(page).to have_content '着手中'
+        expect(page).to have_content '高'
       end
     end
   end
@@ -48,6 +50,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content '2020/08/29'
         expect(task_list[2]).to have_content '2020/08/30'
         expect(task_list[3]).to have_content '2021/08/31'
+      end
+    end
+    context '優先順位でソートした場合' do
+      it 'タスクが優先順位の降順に並んでいること' do
+        visit tasks_path
+        click_on '優先順位でソートをかける'
+        task_list_p = all('.task_row_priority')
+        expect(task_list_p[1]).to have_content '高'
+        expect(task_list_p[3]).to have_content '低'
       end
     end
   end
