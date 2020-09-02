@@ -11,11 +11,13 @@ ja:
       search_tile: タイトル検索
       enter_title: タイトルを入力する
       sort_by_deadline: 終了期限でソートをかける
+      sort_by_priority: 優先順位でソートをかける
       sort_status: ステータス状態
       not_started: 未着手
       at_work: 着手中
       complete: 完了
       do_a_search: 検索
+      unlock_the_sort: ソートを解除
   delete_it?: 本当に削除しますか？
   edit_it_?: 本当に編集しますか？
   activerecord:
