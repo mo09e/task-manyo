@@ -3,6 +3,7 @@
   <%= form.hidden_field :task_name %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :status %>
+  <%= form.hidden_field :priority %>
   <%= form.hidden_field :deadline %>
   <p>Task name:</p>
   <p><%= @task.task_name %></p>
@@ -10,6 +11,8 @@
   <p><%= @task.content %></p>
   <p>Status:</p>
   <p><%= @task.status %></p>
+  <p>priority:</p>
+  <p><%= @task.priority %></p>
   <p>Deadline:</p>
   <p><%= l @task.deadline %></p>
   <%= form.submit "Post task" %>

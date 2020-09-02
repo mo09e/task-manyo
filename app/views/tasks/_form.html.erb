@@ -26,6 +26,11 @@
     <p><%= form.select :status,["未着手","着手中","完了"], class: "status" %></p>
   </div>
 
+  <div class="priority">
+    <p><%= form.label :priority %></p>
+    <p><%= form.select :priority,["高","中","低"], class: "priority" %></p>
+  </div>
+
   <div class="deadline">
     <p><%= form.label :deadline, "Deadline", class: "deadline" %></p>
     <p><%= form.datetime_select :deadline, id: "task_deadline", class: "deadline" %></p>
