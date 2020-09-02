@@ -6,6 +6,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     FactoryBot.create(:third_task)
     visit tasks_path
   end
+
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
@@ -13,12 +14,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in :task_task_name, with: 'task_name'
         fill_in :task_content, with: 'task'
         select '2021', from: :task_deadline_1i
+        select '着手中', from: 'task_status'
         click_on "Post task"
         expect(page).to have_content 'task'
         expect(page).to have_content '2021'
+        expect(page).to have_content '着手中'
       end
     end
   end
+
   describe '一覧表示機能' do
     context '一覧画面に遷移した場合' do
       it '作成済みのタスク一覧が表示される' do
@@ -39,7 +43,7 @@ RSpec.describe 'タスク管理機能', type: :system do
     context '終了期日でソートした場合' do
       it 'タスクが終了期日の降順に並んでいること' do
         visit tasks_path
-        click_link '終了期限でソートをかける'
+        click_on '終了期限でソートをかける'
         task_list = all('.task_row_deadline')
         expect(task_list[1]).to have_content '2020/08/29'
         expect(task_list[2]).to have_content '2020/08/30'
@@ -47,6 +51,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示される' do
@@ -55,5 +60,34 @@ RSpec.describe 'タスク管理機能', type: :system do
          expect(page).to have_content 'take a work'
        end
      end
+  end
+
+  describe '検索機能' do
+    context 'タイトルであいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        visit tasks_path
+        fill_in :task_name, with: 'in the'
+        click_on '検索'
+        expect(page).to have_content 'in the morning'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        select '完了', from: 'status'
+        click_on '検索'
+        expect(page).to have_content '完了'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
+        visit tasks_path
+        fill_in :task_name, with: 'at noon'
+        select '未着手', from: 'status'
+        click_on '検索'
+        expect(page).to have_content 'at noon'
+        expect(page).to have_content '完了'
+      end
+    end
   end
 end
