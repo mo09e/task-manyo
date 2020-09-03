@@ -18,8 +18,15 @@ ja:
       complete: 完了
       do_a_search: 検索
       unlock_the_sort: ソートを解除
-  delete_it?: 本当に削除しますか？
-  edit_it_?: 本当に編集しますか？
+  msg:
+    delete_it?: 本当に削除しますか？
+    edit_it_?: 本当に編集しますか？
+    new: タスクを投稿しました
+    edit: タスクを編集しました
+    destroy: タスクを削除しました
+    not_current_user: ログインが必要です
+    login_failed: ログインに失敗しました
+    logout: ログアウトしました
   activerecord:
     errors:
       messages:

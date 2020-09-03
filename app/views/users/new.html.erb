@@ -3,24 +3,26 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <h3>Sign Up</h3>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @user.errors.count %><%= t('activerecord.errors.messages.count_of_errors') %></h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+        </div>
+      <% end %>
       <br>
       <%= form_with(model: @user, local: true) do |f| %>
-        <p>
-          <%= f.label :name %>
-          <%= f.text_field :name %>
-        </p>
-        <p>
-          <%= f.label :email %>
-          <%= f.email_field :email %>
-        </p>
-        <p>
-          <%= f.label :password %>
-          <%= f.password_field :password %>
-        </p>
-        <p>
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation %>
-        </p>
+        <p><%= f.label :name %></p>
+        <p><%= f.text_field :name %></p>
+        <p><%= f.label :email %></p>
+        <p><%= f.email_field :email %></p>
+        <p><%= f.label :password %></p>
+        <p><%= f.password_field :password %></p>
+        <p><%= f.label :password_confirmation %></p>
+        <p><%= f.password_field :password_confirmation %></p>
+        <br>
         <%= f.submit "Create account", class: "btn btn-primary" %>
       <% end %>
     </div>

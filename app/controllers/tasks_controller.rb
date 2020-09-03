@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :current_user
+  before_action :authenticate_user
 
   def index
     if params[:sort_expired]
@@ -39,7 +41,7 @@ class TasksController < ApplicationController
       render :new
     else
       if @task.save
-        redirect_to tasks_path, notice: "タスクを投稿しました"
+        redirect_to tasks_path, notice: t('msg.new')
       else
         render :new
       end
@@ -51,7 +53,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: "'タスクを編集しました'"
+      redirect_to tasks_path, notice: t('msg.edit')
     else
       render :edit
     end
@@ -67,7 +69,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice:"タスクを削除しました！"
+    redirect_to tasks_path, notice: t('msg.destroy')
   end
 
   private

@@ -53,8 +53,8 @@
           <td class="task_row_priority" ><%= task.priority %></td>
           <td class="task_row_deadline" ><%= l task.deadline %></td>
           <td><%= link_to image_tag("/assets/loupe.png"), task_path(task.id), class: "btn btn-dark-moon" %></td>
-          <td><%= link_to image_tag("/assets/pen.png"), edit_task_path(task.id), data: { confirm: t('edit_it_?') }, class: "btn btn-dark-moon" %></td>
-          <td><%= link_to image_tag("/assets/dust.png"), task_path(task.id), method: :delete ,data: { confirm: t('delete_it?') }, class: "btn btn-dark-moon" %>
+          <td><%= link_to image_tag("/assets/pen.png"), edit_task_path(task.id), data: { confirm: t('msg.edit_it_?') }, class: "btn btn-dark-moon" %></td>
+          <td><%= link_to image_tag("/assets/dust.png"), task_path(task.id), method: :delete ,data: { confirm: t('msg.delete_it?') }, class: "btn btn-dark-moon" %>
           </tr>
           <% end %>
         </tbody>

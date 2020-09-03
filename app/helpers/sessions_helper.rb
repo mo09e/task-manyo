@@ -9,7 +9,7 @@ module SessionsHelper
 
   def authenticate_user
     if @current_user == nil
-      flash[:notice] = 'ログインしてください'
+      flash[:notice] = t('msg.not_current_user')
       redirect_to new_session_path
     end
   end
