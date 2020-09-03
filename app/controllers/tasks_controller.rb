@@ -5,22 +5,22 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(deadline: "ASC")
+      @tasks = current_user.tasks.order(deadline: "ASC")
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: "ASC")
+      @tasks = current_user.tasks.order(priority: "ASC")
     else
-      @tasks = Task.all.order('created_at DESC')
+      @tasks = current_user.tasks.order('created_at DESC')
     end
 
     if params[:search].present?
       if params[:task_name].present? && params[:status].present?
-        @tasks = Task.task_name_search(params[:task_name]).status_search(params[:status])
+        @tasks = current_user.tasks.task_name_search(params[:task_name]).status_search(params[:status])
       elsif params[:task_name].present?
-        @tasks = Task.task_name_search(params[:task_name])
+        @tasks = current_user.tasks.task_name_search(params[:task_name])
       elsif params[:status].present?
-        @tasks = Task.status_search(params[:status])
+        @tasks = current_user.tasks.status_search(params[:status])
       else
-        @tasks = Task.all.order('created_at DESC')
+        @tasks = current_user.tasks.order('created_at DESC')
       end
     end
 
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
@@ -63,7 +63,7 @@ class TasksController < ApplicationController
   end
 
   def confirm
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     render :new if @task.invalid?
   end
 
