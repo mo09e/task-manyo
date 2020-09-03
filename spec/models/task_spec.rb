@@ -26,13 +26,14 @@ RSpec.describe Task, type: :model do
 
     describe '検索機能' do
       before do
-        FactoryBot.create(:task)
-        FactoryBot.create(:second_task)
-        FactoryBot.create(:third_task)
+        @task1 = FactoryBot.create(:task)
+        @task2 = FactoryBot.create(:second_task)
+        @task3 = FactoryBot.create(:third_task)
       end
         context 'scopeメソッドでタイトルのあいまい検索をした場合' do
           it "検索キーワードを含むタスクが絞り込まれる" do
-            expect(Task.task_name_search('sample_name')).not_to include('in the morning')
+            expect(Task.task_name_search('sample_name')).to include(@task1)
+            expect(Task.task_name_search('sample_name')).not_to include(@task2)
             expect(Task.task_name_search('sample_name').count).to eq 1
           end
         end
