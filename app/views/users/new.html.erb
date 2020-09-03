@@ -1,0 +1,28 @@
+<br>
+<div class="container" id="main_layout">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h3>Sign Up</h3>
+      <br>
+      <%= form_with(model: @user, local: true) do |f| %>
+        <p>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </p>
+        <p>
+          <%= f.label :email %>
+          <%= f.email_field :email %>
+        </p>
+        <p>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </p>
+        <p>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation %>
+        </p>
+        <%= f.submit "Create account", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
