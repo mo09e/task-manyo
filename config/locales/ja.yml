@@ -7,6 +7,17 @@ ja:
         show: 詳細
         edit: 編集
         delete: 削除
+    search:
+      search_tile: タイトル検索
+      enter_title: タイトルを入力する
+      sort_by_deadline: 終了期限でソートをかける
+      sort_by_priority: 優先順位でソートをかける
+      sort_status: ステータス状態
+      not_started: 未着手
+      at_work: 着手中
+      complete: 完了
+      do_a_search: 検索
+      unlock_the_sort: ソートを解除
   delete_it?: 本当に削除しますか？
   edit_it_?: 本当に編集しますか？
   activerecord:
@@ -212,7 +223,8 @@ ja:
   time:
     am: 午前
     formats:
-      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      default: "%Y/%m/%d %H:%M:%S"
+      # default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
