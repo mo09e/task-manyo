@@ -1,0 +1,42 @@
+<br>
+<div class="container" id="main_layout">
+  <div class="row">
+    <div class="col-md-11">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th class="t_head"><%= t('view.models.admin.authority_of_Administrator') %></th>
+            <th class="t_head">user_id</th>
+            <th class="t_head"><%= t('view.models.admin.user_name') %></th>
+            <th class="t_head">Email</th>
+            <th class="t_head"><%= t('view.models.admin.task_count') %></th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td class="admin_row"><%= user.admin %></td>
+            <td class="admin_row"><%= user.id %></td>
+            <td lass="admin_row"><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td class="admin_row"><%= user.tasks.size %></td>
+            <td><%= link_to image_tag("/assets/loupe.png"), admin_user_path(user) %></td>
+            <td><%= link_to image_tag("/assets/pen.png"), edit_admin_user_path(user), data: { confirm: t('msg.edit_it?') } %></td>
+            <td><%= link_to image_tag("/assets/dust.png"), admin_user_path(user), method: :delete, data: { confirm: t('msg.delete_it?') } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-9 col-md-3">
+      <br>
+      <%= paginate @users %>
+    </div>
+  </div>
+</div>
