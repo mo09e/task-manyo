@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   private
   def can_not_destroy_admin_user
-    if self.admin && User.where(admin: true).count > 1
+    if self.admin && User.where(admin: true).count < 2
       throw(:abort)
     end
   end
