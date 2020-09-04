@@ -20,7 +20,7 @@ class User < ApplicationRecord
   end
 
   def change_admin
-    if User.where(admin: true).count == 1 && self.admin_changed?(from: true, to: false)
+    if User.where(admin: true).count == 1 && self.will_save_change_to_admin?(from: true, to: false)
       errors.add :base, "管理者が一人も居ない状態にはできません！"
       throw(:abort)
     end
