@@ -1,16 +1,22 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   before do
-    FactoryBot.create(:task)
+    @user = FactoryBot.create(:user)
     FactoryBot.create(:second_task)
     FactoryBot.create(:third_task)
-    visit tasks_path
+
+    visit new_session_path
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
+    sleep 0.5
+    click_on 'Log in'
   end
 
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit new_task_path
+        save_and_open_page
         fill_in :task_task_name, with: 'task_name'
         fill_in :task_content, with: 'task'
         select '2021', from: :task_deadline_1i

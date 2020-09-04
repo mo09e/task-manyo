@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :task do
+    user_id { 2 }
     task_name { 'sample_name' }
     content { 'test_content' }
     deadline { '2020-08-29 13:40:00' }
@@ -8,6 +9,7 @@ FactoryBot.define do
   end
 
   factory :second_task, class: Task do
+    user_id { 2 }
     task_name { 'in the morning' }
     content { 'take a work' }
     deadline { '2020-08-30 13:40:00' }
@@ -16,6 +18,7 @@ FactoryBot.define do
   end
 
   factory :third_task, class: Task do
+    user_id { 2 }
     task_name { 'at noon' }
     content { 'Eat lunch' }
     deadline { '2021-08-31 15:00:00' }
