@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ resources :users, module: 'admin'
  resources :users, only: [:new, :create, :show]
  resources :sessions, only: [:new, :create, :destroy]
  resources :tasks do
@@ -7,5 +8,5 @@ Rails.application.routes.draw do
    end
  end
 
- root to: "tasks#index"
+ root to: "session#new"
 end
