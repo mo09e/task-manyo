@@ -10,18 +10,32 @@
   </head>
 
   <body>
-    <% if logged_in? %>
-      <% if current_user.admin? %>
-        <%= link_to "Admin Page", admin_users_path %>
-      <% end %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Task List", tasks_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
-  <% end %>
-  <p id="notice"><%= notice %></p>
+    <header class="sticky-top">
+      <div calss="header_layout">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-offset-3 col-md-9">
+              <p class="header_menu">
+              <% if logged_in? %>
+                <% if current_user.admin? %>
+                  <%= link_to "Admin Page", admin_users_path, class:"h-link" %>
+                <% end %>
+                <%= link_to "Profile", user_path(current_user.id), class:"h-link" %>
+                <%= link_to "Task List", tasks_path(current_user.id), class:"h-link" %>
+                <%= link_to "Logout", session_path(current_user.id), method: :delete, class:"h-link" %>
+              <% else %>
+                <%= link_to "Sign up", new_user_path, class:"h-link" %>
+                <%= link_to "Login", new_session_path, class:"h-link" %>
+              <% end %>
+            </p>
+           </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <center><p id="notice" class="bg info"><%= notice %></p></center>
+    <br>
+    <br>
     <%= yield %>
   </body>
 </html>

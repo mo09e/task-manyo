@@ -36,7 +36,7 @@ ja:
     please_logein: ログインが必要です
     login_failed: ログインに失敗しました
     logout: ログアウトしました
-    can_not_to_acces: 他のユーザーページへはアクセスできません。
+    can_not_to_acces: 他のユーザーページへはアクセスできません
     not_authorized: 権限がありません
   activerecord:
     errors:

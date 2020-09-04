@@ -21,8 +21,8 @@
   <% end %>
   <p><%= f.label :admin %></p>
   <p>
-    <%= f.radio_button :admin, "true" %>true
-    <%= f.radio_button :admin, "false" %>false
+    <%= f.radio_button :admin, "true", for: "true" %>true
+    <%= f.radio_button :admin, "false", for: "false" %>false
   </p>
   <br>
   <%= f.submit "Create", class: "btn btn-primary" %>
