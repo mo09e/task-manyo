@@ -1,8 +1,7 @@
-<br>
 <div class="container" id="main_layout">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <h3>Account information</h3>
+      <h3>User's Information</h3>
       <p>Name:</p>
       <p><%= @user.name %></p>
       <p>Email:</p>
@@ -12,7 +11,47 @@
       <p>Admin:</p>
       <p><%= @user.admin %></p>
       <br>
+      <h3>User's Task List</h3>
+      <br>
+      <table class="task_row" id="main_table">
+        <thead>
+          <tr>
+            <th class="t_head">Task name</th>
+            <th class="t_head">Details</th>
+            <th class="t_head">Status</th>
+            <th class="t_head">Priority</th>
+            <th class="t_head">Deadline</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.task_name %></td>
+          <td class="task_content"><%= task.content %></td>
+          <td class="task_row_status"><%= task.status %></td>
+          <td class="task_row_priority" ><%= task.priority %></td>
+          <td class="task_row_deadline" ><%= l task.deadline %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-7 col-md-3">
+    <br>
+        <%= paginate @tasks %>
+    </div>
+  </div>
+</div>
+<div class="container" id="main_layout">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
       <%= link_to "back to the list", admin_users_path, class: "btn btn-primary" %>
+      <br>
     </div>
   </div>
 </div>

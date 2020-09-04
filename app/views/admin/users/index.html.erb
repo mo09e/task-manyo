@@ -24,7 +24,7 @@
             <td class="admin_row"><%= user.admin %></td>
             <td><%= link_to image_tag("/assets/loupe.png"), admin_user_path(user) %></td>
             <td><%= link_to image_tag("/assets/pen.png"), edit_admin_user_path(user), data: { confirm: t('msg.edit_it_?') } %></td>
-            <td><%= link_to image_tag("/assets/dust.png"), admin_user_path(user), method: :delete, data: { confirm: t('msg.delete_it_?') } %></td>
+            <td><%= link_to image_tag("/assets/dust.png"), admin_user_path(user), method: :delete, data: { confirm: t('msg.delete_it?') } %></td>
           </tr>
           <% end %>
         </tbody>

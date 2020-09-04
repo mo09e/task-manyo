@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
+  before_action :current_user
   before_action :admin_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all.order("created_at DESC")
+    @users = User.all.order("created_at DESC").select(:id, :name, :email, :admin)
     @users = @users.page(params[:page]).per(10)
   end
 
@@ -32,16 +33,20 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @tasks = @user.tasks.page(params[:page]).per(10)
   end
 
   def destroy
-    @user.Destroy
-    redirect_to admin_users_path, notice: t('view.models.admin.destroy')
+    if @user.destroy
+      redirect_to admin_users_path, notice: t('view.models.admin.destroy')
+    else
+      redirect_to admin_users_path, notice: t('view.models.admin.administrator_users_cannot_be_deleted')
+    end
   end
 
   private
   def admin_user
-    if current_user.admin == false
+    unless current_user && current_user.admin == true
       flash[:notice] = t("msg.not_authorized")
       redirect_to(tasks_path)
     end

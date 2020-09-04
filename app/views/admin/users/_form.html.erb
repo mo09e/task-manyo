@@ -20,8 +20,10 @@
   <p><%= f.password_field :password_confirmation %></p>
   <% end %>
   <p><%= f.label :admin %></p>
-  <p><%= f.radio_button :admin, "true" %>true
-  <%= f.radio_button :admin, "false" %>false</p>
+  <p>
+    <%= f.radio_button :admin, "true" %>true
+    <%= f.radio_button :admin, "false" %>false
+  </p>
   <br>
   <%= f.submit "Create", class: "btn btn-primary" %>
 <% end %>
