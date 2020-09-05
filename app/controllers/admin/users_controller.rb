@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :current_user
-  before_action :admin_user
+  before_action :require_admin_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -45,7 +45,7 @@ class Admin::UsersController < ApplicationController
   end
 
   private
-  def admin_user
+  def require_admin_user
     unless current_user && current_user.admin == true
       flash[:notice] = t("msg.not_authorized")
       redirect_to(tasks_path)
