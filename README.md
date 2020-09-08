@@ -22,13 +22,18 @@
 |integer|priority|
 |begint|user_id|
 
+**Labeling**
+
+|データ型|カラム名|
+|:---|:---|
+|begint|label_id|
+|begint|task_id|
+
 **Label**
 
 |データ型|カラム名|
 |:---|:---|
-|begint|user_id|
-|begint|task_id|
-
+|string|name|
 
 ### Herokuへのデプロイ方法
 全てターミナル上で行う
