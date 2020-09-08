@@ -49,7 +49,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         click_on '終了期限でソートをかける'
         task_list = all('.task_row_deadline')
-        save_and_open_page
+        sleep 0.5
         expect(task_list[1]).to have_content '2020/08/29'
       end
     end
@@ -59,7 +59,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         click_on '優先順位でソートをかける'
         task_list_p = all('.task_row_priority')
         sleep 0.5
-        save_and_open_page
         expect(task_list_p[1]).to have_content '高'
         expect(task_list_p[3]).to have_content '低'
       end

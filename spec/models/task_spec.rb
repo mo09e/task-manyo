@@ -18,17 +18,19 @@ RSpec.describe Task, type: :model do
       end
       context 'タスクのタイトルと詳細に内容が記載されている場合' do
         it 'バリデーションが通る' do
-          task = Task.new(task_name: '成功テスト', content: '成功テスト')
-          expect(task).to be_valid
+          user =  FactoryBot.create(:user)
+          @task1 = FactoryBot.create(:task, user: user)
+          expect(@task1).to be_valid
         end
       end
     end
 
     describe '検索機能' do
       before do
-        @task1 = FactoryBot.create(:task)
-        @task2 = FactoryBot.create(:second_task)
-        @task3 = FactoryBot.create(:third_task)
+        user =  FactoryBot.create(:user)
+        @task1 = FactoryBot.create(:task, user: user)
+        @task2 = FactoryBot.create(:second_task, user: user)
+        @task3 = FactoryBot.create(:third_task, user: user)
       end
         context 'scopeメソッドでタイトルのあいまい検索をした場合' do
           it "検索キーワードを含むタスクが絞り込まれる" do
