@@ -87,6 +87,18 @@ table, th, td {
   width: 30%;
 }
 
+.btn-warning a {
+  color: #ffffff;
+
+  &:visited {
+    color: #ffffff;
+  }
+
+  &:hover {
+    color: #337ab7;
+  }
+}
+
 /* Msg　================================  */
 
 #error_explanation {
