@@ -7,6 +7,14 @@ ja:
         show: 詳細
         edit: 編集
         delete: 削除
+      admin:
+        authority_of_Administrator: 管理権限
+        user_name: ユーザー名
+        task_count: タスク数
+        new: ユーザーを新規作成しました
+        edit: ユーザー情報を編集しました
+        destroy: ユーザーを削除しました
+        administrator_users_cannot_be_deleted: 管理者自身を削除することはできません
     search:
       search_tile: タイトル検索
       enter_title: タイトルを入力する
@@ -18,8 +26,18 @@ ja:
       complete: 完了
       do_a_search: 検索
       unlock_the_sort: ソートを解除
-  delete_it?: 本当に削除しますか？
-  edit_it_?: 本当に編集しますか？
+  msg:
+    delete_it?: 本当に削除しますか？
+    edit_it_?: 本当に編集しますか？
+    new: タスクを投稿しました
+    edit: タスクを編集しました
+    destroy: タスクを削除しました
+    already_logged_in: すでにログインしています
+    please_logein: ログインが必要です
+    login_failed: ログインに失敗しました
+    logout: ログアウトしました
+    can_not_to_acces: 他のユーザーページへはアクセスできません
+    not_authorized: 権限がありません
   activerecord:
     errors:
       messages:

@@ -9,6 +9,7 @@
 |string|name|
 |string|email|
 |string|password_digest|
+|boolean|admin|
 
 **Task**
 
@@ -17,17 +18,22 @@
 |string|task_name|
 |text|content|
 |string|status|
-|date|deadline|
+|datetime|deadline|
 |integer|priority|
 |begint|user_id|
+
+**Labeling**
+
+|データ型|カラム名|
+|:---|:---|
+|begint|label_id|
+|begint|task_id|
 
 **Label**
 
 |データ型|カラム名|
 |:---|:---|
-|begint|user_id|
-|begint|task_id|
-
+|string|name|
 
 ### Herokuへのデプロイ方法
 全てターミナル上で行う
@@ -38,10 +44,10 @@
 1. `$ git add -A`
 1. `$ git commit -m "コミットメッセージ"`
 1. `$ heroku create`　heroku上にアプリを作成（初回のみ）
-1. 必要であればheroku上にheroku buildpackを追加する<br>
+1. 必要であればheroku上にheroku buildpackを追加する
   - `$ heroku buildpacks:set heroku/ruby`
   - `$ heroku buildpacks:add --index 1 heroku/nodejs`
 1. herokuにデプロイする
-  - **マスターの場合** `$ git push heroku master`<br>
+  - **マスターの場合** `$ git push heroku master`
   - **branchの場合** `$ git push heroku <ブランチ名>:master`
 1. `$ heroku run rails db:migrate`

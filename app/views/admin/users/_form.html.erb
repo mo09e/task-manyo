@@ -1,0 +1,29 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @user.errors.count %><%= t('activerecord.errors.messages.count_of_errors') %></h2>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+  </div>
+<% end %>
+<br>
+<%= form_with(model: [ :admin, @user ], local: true) do |f| %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name %></p>
+  <p><%= f.label :email %></p>
+  <p><%= f.email_field :email %></p>
+  <% if action_name == "new" %>
+  <p><%= f.label :password %></p>
+  <p><%= f.password_field :password %></p>
+  <p><%= f.label :password_confirmation %></p>
+  <p><%= f.password_field :password_confirmation %></p>
+  <% end %>
+  <p><%= f.label :admin %></p>
+  <p>
+    <%= f.radio_button :admin, "true", for: "true" %>true
+    <%= f.radio_button :admin, "false", for: "false" %>false
+  </p>
+  <br>
+  <%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>
