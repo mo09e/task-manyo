@@ -21,6 +21,7 @@ ja:
       sort_by_deadline: 終了期限でソートをかける
       sort_by_priority: 優先順位でソートをかける
       sort_status: ステータス状態
+      label: ラベル検索
       not_started: 未着手
       at_work: 着手中
       complete: 完了

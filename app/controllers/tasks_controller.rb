@@ -32,7 +32,6 @@ class TasksController < ApplicationController
   end
 
   def new
-    @labels = Label.all
     if params[:back]
       @task = Task.new(task_params)
     else
@@ -54,11 +53,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @labels = Label.all
   end
 
   def update
-    @labels = Label.all
     if @task.update(task_params)
       redirect_to tasks_path, notice: t('msg.edit')
     else
@@ -68,11 +65,6 @@ class TasksController < ApplicationController
 
   def show
   end
-
-  # def confirm
-  #   @task = current_user.tasks.build(task_params)
-  #   render :new if @task.invalid?
-  # end
 
   def destroy
     @task.destroy
