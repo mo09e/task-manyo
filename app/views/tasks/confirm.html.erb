@@ -9,6 +9,7 @@
         <%= form.hidden_field :status %>
         <%= form.hidden_field :priority %>
         <%= form.hidden_field :deadline %>
+        <%# <%= form.hidden_field :labels %> %>
         <p>Task name:</p>
         <p><%= @task.task_name %></p>
         <p>Details:</p>
@@ -19,6 +20,12 @@
         <p><%= @task.priority %></p>
         <p>Deadline:</p>
         <p><%= l @task.deadline %></p>
+        <p>Label:</p>
+        <% @task.labels.each do |label| %>
+          <%= form.hidden_field :label_ids %>
+        <p><%= label.name %></p>
+        <% end %>
+        <br>
         <%= form.submit "Post task", class: "btn btn-primary" %>
         <%= form.submit "Back", name: "back", class: "btn btn-primary" %>
       <% end %>

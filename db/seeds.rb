@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-15.times do |n|
+5.times do |n|
   name = Faker::Artist.name
   email = Faker::Internet.email
   password = "password"
@@ -24,3 +24,10 @@ User.create!(name: "AdminUser",
              password_confirmation: 'password',
              admin: true
              )
+
+Label.create!([
+             { name: 'work' },
+             { name: 'study' },
+             { name: 'hobby' },
+             { name: 'etc' },
+             ])

@@ -1,0 +1,17 @@
+<%= form_with(url: tasks_path, method: :get, local: true) do |search_f| %>
+  <%= search_f.label :task_name, t('view.search.search_tile') %>
+  <%= search_f.text_field :task_name, placeholder: t('view.search.enter_title') %>
+  <%= search_f.label :status, t('view.search.sort_status') %>
+  <%= search_f.select :status,
+                              [[t('view.search.not_started')],
+                              [t('view.search.at_work')],
+                              [t('view.search.complete')]] , include_blank: true %>
+  <%= search_f.hidden_field :search, value:"true" %>
+  <%= search_f.submit t('view.search.do_a_search'), class: "btn btn-primary" %>
+<% end %>
+<br>
+<br>
+<%= form_with url: tasks_path, method: :get, local: true do |form| %>
+  <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: true }) %>
+  <%= form.submit t('view.search.do_a_search'), name: nil, class: "btn btn-primary" %>
+<% end %>
