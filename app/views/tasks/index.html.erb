@@ -10,9 +10,8 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="containerr-fluid"">
   <div class="row">
-    <div class="col-md-offset-1 col-md-11">
       <center>
           <%= render 'listsearch' %>
       <br>
@@ -31,7 +30,7 @@
             <th class="t_head">Priority</th>
             <th class="t_head">Deadline</th>
             <th class="t_head">Label</th>
-            <th colspan="2"></th>
+            <th colspan="3" class="t_head"></th>
           </tr>
         </thead>
         <tbody>
@@ -42,7 +41,7 @@
           <td class="task_row_status"><%= task.status %></td>
           <td class="task_row_priority" ><%= task.priority %></td>
           <td class="task_row_deadline" ><%= l task.deadline %></td>
-          <td>
+          <td class="task_row_label">
             <% task.labels.each do |label| %>
               <p  class="label label-info"><%= label.name %></p>
             <% end %>
@@ -54,7 +53,6 @@
           <% end %>
         </tbody>
       </table>
-    </div>
   </div>
 </div>
 <div class="container">

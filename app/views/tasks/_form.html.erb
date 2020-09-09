@@ -36,9 +36,9 @@
     <p><%= form.datetime_select :deadline, id: "task_deadline", class: "deadline" %></p>
   </div>
 
-  <div class="label">
+  <div class="labeltag">
     <p><%= form.label :label, "Label" %></p>
-    <p><%= form.collection_check_boxes(:label_ids, @labels, :id, :name) %></p>
+    <p id="labels"><%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %></p>
   </div>
 
   <div class="actions">
