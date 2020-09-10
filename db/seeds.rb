@@ -26,6 +26,6 @@ User.create!(name: "AdminUser",
     deadline: '2020-09-05 00:00:00',
     status: '未着手',
     priority: 2,
-    user_id:  User.first.id + 1
+    user_id:  User.first.id + n
   )
 end
