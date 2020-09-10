@@ -48,7 +48,7 @@ RSpec.describe 'ラベル機能', type: :system do
       end
     end
     context '任意のタスク詳細画面に遷移した場合' do
-      it '該当タスクの内容が表示される' do
+      it '該当タスクの内容とラベルが表示される' do
         visit new_task_path
         fill_in :task_task_name, with: 'task_name'
         fill_in :task_content, with: 'task'
