@@ -10,25 +10,15 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="containerr-fluid"">
   <div class="row">
-    <div class="col-md-offset-1 col-md-10">
       <center>
-      <%= form_with(url: tasks_path, method: :get, local: true) do |search_f| %>
-        <%= search_f.label :task_name, t('view.search.search_tile') %>
-        <%= search_f.text_field :task_name, placeholder: t('view.search.enter_title') %>
-        <%= search_f.label :status, t('view.search.sort_status') %>
-        <%= search_f.select :status,
-                                  [[t('view.search.not_started')],
-                                   [t('view.search.at_work')],
-                                   [t('view.search.complete')]] , include_blank: true %>
-        <%= search_f.hidden_field :search, value:"true" %>
-        <%= search_f.submit t('view.search.do_a_search'), class: "btn btn-primary" %>
-      <% end %>
+          <%= render 'listsearch' %>
       <br>
-        <p class="btn btn-warning"><%= link_to t('view.search.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %></p>
-        <p class="btn btn-warning"><%= link_to t('view.search.sort_by_priority'),tasks_path(sort_priority: "true"), id: "sort_by_priority", class: "task_row_priority" %></p>
-        <%= link_to t('view.search.unlock_the_sort'),tasks_path(sort: 'created_at DESC'), class: "btn btn-danger" %>
+      <p class="btn btn-warning"><%= link_to t('view.search.sort_by_deadline'),tasks_path(sort_expired: "true"), id: "sort_by_deadline", class: "task_row_deadline" %></p>
+      <p class="btn btn-warning"><%= link_to t('view.search.sort_by_priority'),tasks_path(sort_priority: "true"), id: "sort_by_priority", class: "task_row_priority" %></p>
+      <%= link_to t('view.search.unlock_the_sort'),tasks_path(sort: 'created_at DESC'), class: "btn btn-danger" %>
+      <br>
       </center>
       <br>
       <table class="task_row" id="main_table">
@@ -39,25 +29,30 @@
             <th class="t_head">Status</th>
             <th class="t_head">Priority</th>
             <th class="t_head">Deadline</th>
-            <th colspan="2"></th>
+            <th class="t_head">Label</th>
+            <th colspan="3" class="t_head"></th>
           </tr>
         </thead>
         <tbody>
         <% @tasks.each do |task| %>
         <tr>
-          <td><%= task.task_name %></td>
+          <td class="task_row_name"><%= task.task_name %></td>
           <td class="task_content"><%= task.content %></td>
           <td class="task_row_status"><%= task.status %></td>
           <td class="task_row_priority" ><%= task.priority %></td>
           <td class="task_row_deadline" ><%= l task.deadline %></td>
-          <td><%= link_to image_tag("/assets/loupe.png"), task_path(task.id), class: "btn btn-dark-moon" %></td>
+          <td class="task_row_label">
+            <% task.labels.each do |label| %>
+              <p  class="label label-info"><%= label.name %></p>
+            <% end %>
+          </td>
+          <td><%= link_to image_tag("/assets/loupe.png"), task_path(task.id), class: "btn btn-dark-moon", alt: "show" %></td>
           <td><%= link_to image_tag("/assets/pen.png"), edit_task_path(task.id), data: { confirm: t('msg.edit_it_?') }, class: "btn btn-dark-moon" %></td>
           <td><%= link_to image_tag("/assets/dust.png"), task_path(task.id), method: :delete ,data: { confirm: t('msg.delete_it?') }, class: "btn btn-dark-moon" %>
           </tr>
           <% end %>
         </tbody>
       </table>
-    </div>
   </div>
 </div>
 <div class="container">

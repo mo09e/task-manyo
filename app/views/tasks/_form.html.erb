@@ -1,4 +1,4 @@
-<%= form_with(model: @task, local: true, url: choose_new_or_edit) do |form| %>
+<%= form_with(model: @task, local: true) do |form| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= @task.errors.count %> <%= t('activerecord.errors.messages.count_of_errors') %></h2>
@@ -34,6 +34,11 @@
   <div class="deadline">
     <p><%= form.label :deadline, "Deadline", class: "deadline" %></p>
     <p><%= form.datetime_select :deadline, id: "task_deadline", class: "deadline" %></p>
+  </div>
+
+  <div class="labeltag">
+    <p><%= form.label :label, "Label" %></p>
+    <p id="labels"><%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %></p>
   </div>
 
   <div class="actions">

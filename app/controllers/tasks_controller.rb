@@ -24,6 +24,10 @@ class TasksController < ApplicationController
       end
     end
 
+    if params[:label_id].present?
+      @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] })
+    end
+
     @tasks = @tasks.page(params[:page]).per(7)
   end
 
@@ -62,11 +66,6 @@ class TasksController < ApplicationController
   def show
   end
 
-  def confirm
-    @task = current_user.tasks.build(task_params)
-    render :new if @task.invalid?
-  end
-
   def destroy
     @task.destroy
     redirect_to tasks_path, notice: t('msg.destroy')
@@ -74,7 +73,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:task_name, :content, :deadline, :status, :sort_expired, :priority)
+    params.require(:task).permit(:task_name, :content, :deadline, :status, :sort_expired, :priority, { label_ids: [] })
   end
 
   def set_task
