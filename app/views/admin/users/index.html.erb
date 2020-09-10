@@ -1,4 +1,3 @@
-<br>
 <div class="container">
   <div class="row">
     <div class="col-md-offset-5">
@@ -22,7 +21,7 @@
             <th class="t_head">Email</th>
             <th class="t_head"><%= t('view.models.admin.task_count') %></th>
             <th class="t_head"><%= t('view.models.admin.authority_of_Administrator') %></th>
-            <th colspan="2"></th>
+            <th colspan="3" class="t_head"></th>
           </tr>
         </thead>
 
@@ -46,7 +45,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-offset-9 col-md-3">
+    <div class="col-md-offset-6 col-md-6">
       <br>
       <%= paginate @users %>
     </div>
